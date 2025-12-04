@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.log
+
+# Virtual environment
+venv/
+.env
+
+# SQLite database
+*.db
+*.sqlite3
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
