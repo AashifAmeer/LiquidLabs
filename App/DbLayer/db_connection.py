@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS posts (
     id INTEGER PRIMARY KEY,
     userId INTEGER,
     title TEXT,
-    body TEXT,
+    body TEXT
 );
 """
 
@@ -22,11 +22,11 @@ def initialize_db():
         cursor = conn.cursor()
         cursor.execute(CREATE_POSTS_TABLE_QUERY)
         conn.commit()
+        print("Database initialized successfully.")
     except Exception as e:
         print(f"Error initializing database: {e}")
     finally:
         conn.close()
-        print("Database initialized successfully.")
 
 def get_db_connection():
     # Establish a connection to the database
