@@ -15,8 +15,8 @@ def fetch_post_by_id_from_api(post_id: int):
             response.raise_for_status()
             return response.json()
     except httpx.HTTPError as e:
-        print(f"Error fetching post from API: {e}")
-        raise
+        print(f"Error fetching post {post_id} from API: {e}")
+        return None
 
 def fetch_all_posts_from_api():
     try:
@@ -26,50 +26,35 @@ def fetch_all_posts_from_api():
             return response.json()
     except httpx.HTTPError as e:
         print(f"Error fetching posts from API: {e}")
-        raise
+        return []
 
-def create_post_in_db(post: dict):
-    conn = get_db_connection()
+def create_post_in_db(post: dict, conn):
     try:
         create_post(conn, post)
     except Exception as e:
         print(f"Error creating post in DB: {e}")
         raise
-    finally:
-        conn.close()
 
 def get_post_by_id_service(post_id: int):
-    conn = get_db_connection()
-    try:
+    with get_db_connection() as conn:
         cached = get_posts_by_id(conn, post_id)
-        if cached: return cached
+        if cached: 
+            return cached
 
         api_post = fetch_post_by_id_from_api(post_id)
-        if not api_post: return None
+        if api_post: 
+            create_post_in_db(api_post)
 
-        create_post_in_db(api_post)
         return api_post
-    
-    except Exception as e:
-        print(f"Error getting post by ID from DB: {e}")
-        raise
-    finally:
-        conn.close()
 
 def get_all_posts_service():
-    conn = get_db_connection()
-    try:
+    with get_db_connection() as conn:
         cached_posts = get_all_posts(conn)
-        if cached_posts: return cached_posts
+        if cached_posts: 
+            return cached_posts
 
         api_posts = fetch_all_posts_from_api()
         for post in api_posts:
-            create_post_in_db(post)
+            create_post_in_db(post, conn)
         
         return api_posts
-    
-    except Exception as e:
-        print(f"Error getting all posts from DB: {e}")
-        raise
-    finally:
-        conn.close()
