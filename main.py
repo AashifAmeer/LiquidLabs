@@ -18,9 +18,9 @@ async def lifespan(app: FastAPI):
     # Print helpful usage instructions
     logger.info(" API is ready to use.")
     logger.info(" Use the following endpoints:")
-    logger.info(" Welcome endpoint : http://127.0.0.1:8000")
-    logger.info(" GET all posts    : http://127.0.0.1:8000/posts")
-    logger.info(" GET a post by ID : http://127.0.0.1:8000/posts/{id} (replace {id} with a number)")
+    logger.info(" Welcome endpoint : http://localhost:8000")
+    logger.info(" GET all posts    : http://localhost:8000/api/posts")
+    logger.info(" GET a post by ID : http://localhost/api/posts/{id} (replace {id} with a number)")
     logger.info(" To stop the server, press CTRL+C in the terminal.\n")
 
     yield
