@@ -33,11 +33,11 @@ and desgined for mainatability.
 
 ### 2. Clone the project from the Github repository
 ```bash
-git clone https://github.com/Aashif/LiquidLabsPosts.git
+git clone https://github.com/Aashif/LiquidLabs.git
 ```
 ### 3. Redirect to project folder
 ```bash
-cd LiquidLabsPosts
+cd LiquidLabs
 ```
 ### 4. Create a virtual environment
 ```bash
@@ -66,7 +66,7 @@ uvicorn main:app --reload --host localhost
 # :link: Quick Links
 - Base URL : http://localhost:8000/api
 - API Test Tool : Postman
-- Git Repository : https://github.com/Aashif/LiquidLabsPosts.git
+- Git Repository : https://github.com/Aashif/LiquidLabs.git
 
 # :satellite: API Test Endpoints
 
