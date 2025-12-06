@@ -28,25 +28,34 @@ and desgined for mainatability.
    - Database queries, DB initialization and connections
   
 ## Setup Instructions
-```bash
+
 ### 1. Clone the project from the Github repository
+```bash
 git clone https://github.com/Aashif/LiquidLabsPosts.git
-
+```
 ### 2. Redirect to project folder
+```bash
 cd LiquidLabsPosts
-
+```
 ### 3. Create a virtual environment
+```bash
 python -m venv venv
-
+```
 ### 4. Activate virtual environment
-### Windows:
+```bash
+# Windows:
 venv/Scripts\activate
-### Linux/Mac
+# Linux/Mac
 source venv/bin/activate
-
+```
 ### 5. Install dependencies
+```bash
 pip install -r requirements.txt
-
+```
 ### 6. Run the FastAPI server
-uvicorn main:app --reload
-   
+```bash
+uvicorn main:app --reload --host localhost
+```
+### 7. Test API endpoints using Postman or any other tools.
+  - [http://localhost:8000/api/posts]    : Retrieve all posts
+  - [http://localhost:8000/api/posts/1]  : Retrieve a post by ID
