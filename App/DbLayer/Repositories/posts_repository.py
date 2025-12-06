@@ -1,5 +1,9 @@
 import sqlite3
+import logging
 from typing import Optional, List, Dict
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def get_posts_by_id(conn: sqlite3.Connection, post_id: int) -> Optional[Dict]:
     try:
@@ -8,7 +12,7 @@ def get_posts_by_id(conn: sqlite3.Connection, post_id: int) -> Optional[Dict]:
         row = cursor.fetchone()
         return dict(row) if row else None
     except Exception as e:
-        print(f"Error fetching post by id: {e}")
+        logger.error(f"Error fetching post by id {post_id}: {e}")
         raise
 
 def get_all_posts(conn: sqlite3.Connection) -> List[Dict]:
@@ -18,7 +22,7 @@ def get_all_posts(conn: sqlite3.Connection) -> List[Dict]:
         rows = cursor.fetchall()
         return [dict(row) for row in rows]
     except Exception as e:
-        print(f"Error fetching all posts: {e}")
+        logger.error(f"Error fetching all posts: {e}")
         raise
 
 def create_post(conn: sqlite3.Connection, post: Dict) -> None:
@@ -30,5 +34,5 @@ def create_post(conn: sqlite3.Connection, post: Dict) -> None:
         )
         conn.commit()
     except Exception as e:
-        print(f"Error creating post: {e}")
+        logger.error(f"Error creating post {post['id']}: {e}")
         raise

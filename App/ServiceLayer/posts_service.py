@@ -1,4 +1,5 @@
 import httpx
+import logging
 from App.DbLayer.db_connection import get_db_connection
 from App.DbLayer.Repositories.posts_repository import (
     get_posts_by_id,
@@ -8,6 +9,9 @@ from App.DbLayer.Repositories.posts_repository import (
 
 API_URL = "https://jsonplaceholder.typicode.com/posts"
 
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+
 def fetch_post_by_id_from_api(post_id: int):
     try:
         with httpx.Client() as client:
@@ -15,7 +19,7 @@ def fetch_post_by_id_from_api(post_id: int):
             response.raise_for_status()
             return response.json()
     except httpx.HTTPError as e:
-        print(f"Error fetching post {post_id} from API: {e}")
+        logger.error(f"Error fetching post {post_id} from API: {e}")
         return None
 
 def fetch_all_posts_from_api():
@@ -25,14 +29,14 @@ def fetch_all_posts_from_api():
             response.raise_for_status()
             return response.json()
     except httpx.HTTPError as e:
-        print(f"Error fetching posts from API: {e}")
+        logger.error(f"Error fetching all posts from API: {e}")
         return []
 
 def create_post_in_db(post: dict, conn):
     try:
         create_post(conn, post)
     except Exception as e:
-        print(f"Error creating post in DB: {e}")
+        logger.error(f"Error creating post {post['id']} in DB: {e}")
         raise
 
 def get_post_by_id_service(post_id: int):

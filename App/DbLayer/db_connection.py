@@ -1,6 +1,10 @@
 import sqlite3
+import logging
 from pathlib import Path
 from contextlib import contextmanager
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = BASE_DIR / 'Instance' / 'liquidlabs.db'
@@ -22,9 +26,10 @@ def initialize_db():
         with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute(CREATE_POSTS_TABLE_QUERY)
-        print("Database initialized successfully.")
+        logger.info("Database initialized successfully.")
     except Exception as e:
-        print(f"Error initializing database: {e}")
+        logger.error(f"Error initializing database: {e}")
+        
 
 @contextmanager
 def get_db_connection():
