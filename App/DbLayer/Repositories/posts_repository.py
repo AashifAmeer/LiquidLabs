@@ -2,10 +2,12 @@ import sqlite3
 import logging
 from typing import Optional, List, Dict
 
+# Set up logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 def get_posts_by_id(conn: sqlite3.Connection, post_id: int) -> Optional[Dict]:
+    # Retrieve a post by its ID from the database'''
     try:
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM posts WHERE id = ?", (post_id,))
@@ -16,6 +18,7 @@ def get_posts_by_id(conn: sqlite3.Connection, post_id: int) -> Optional[Dict]:
         raise
 
 def get_all_posts(conn: sqlite3.Connection) -> List[Dict]:
+    # Retrieve all posts from the database, ordered by their ID
     try:
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM posts ORDER BY id ASC")
@@ -26,6 +29,7 @@ def get_all_posts(conn: sqlite3.Connection) -> List[Dict]:
         raise
 
 def create_post(conn: sqlite3.Connection, post: Dict) -> None:
+    # Insert a new post record into the database
     try:
         cursor = conn.cursor()
         cursor.execute(
