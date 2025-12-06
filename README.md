@@ -14,7 +14,7 @@ and desgined for mainatability.
 - When requests posts:
   - First check cache (SQLite)
   - if found, then return cache data
-  - if not, then fetch from public API: [https://jsonplaceholder.typicode.com/posts]
+  - if not, then fetch from public API: https://jsonplaceholder.typicode.com/posts
 - Fetched posts are stored in SQLite for future requests.
 - Completely built using raw SQL queries. (No ORM is used).
 - Supports error handling
@@ -57,5 +57,5 @@ pip install -r requirements.txt
 uvicorn main:app --reload --host localhost
 ```
 ### 7. Test API endpoints using Postman or any other tools.
-  - [http://localhost:8000/api/posts]    : Retrieve all posts
-  - [http://localhost:8000/api/posts/1]  : Retrieve a post by ID
+  - Retrieve all posts    : http://localhost:8000/api/posts
+  - Retrieve a post by ID : http://localhost:8000/api/posts/1
