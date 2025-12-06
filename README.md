@@ -57,7 +57,7 @@ pip install -r requirements.txt
 ```
 ### 7. Run the FastAPI server
 ```bash
-uvicorn main:app --reload --host localhost
+uvicorn main:app --reload --host localhost --port 0
 ```
 ### 8. Test API endpoints using Postman or any other tools.
   - Retrieve all posts    : http://localhost:8000/api/posts
