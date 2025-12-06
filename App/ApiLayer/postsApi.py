@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from App.Scehmas.post_model import PostModel
+from App.Schemas.post_model import PostModel
 from App.ServiceLayer.posts_service import (
     get_post_by_id_service,
     get_all_posts_service
