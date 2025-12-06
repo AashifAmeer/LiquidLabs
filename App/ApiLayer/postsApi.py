@@ -5,7 +5,7 @@ from App.ServiceLayer.posts_service import (
     get_all_posts_service
 )
 
-router = APIRouter(prefix="api/posts", tags=["Posts"])
+router = APIRouter(prefix="/api/posts", tags=["Posts"])
 
 @router.get("/", response_model=list[PostModel])
 def get_all_posts():
