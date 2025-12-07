@@ -5,7 +5,7 @@ locally in an SQLite database, and serves them through REST endpoints. Built wit
 and desgined for mainatability.
 
 ## :hammer_and_wrench: Tech Stack
-- Backend      : Python 3.12+, FastAPI, HTTPX
+- Backend      : Python, FastAPI, HTTPX
 - Database     : SQLite (File-based), Raw SQL queries (no ORM)
 - Architecture : N-Tier Architecture (API Layer, Service Layer, Database Layer) 
 
@@ -29,7 +29,7 @@ and desgined for mainatability.
   
 ## :zap: Setup Instructions
 
-### 1. Make sure your system has Python 3.12+ installed
+### 1. Make sure your system has Python 3.11 or higher installed
 
 ### 2. Clone the project from the Github repository
 ```bash
